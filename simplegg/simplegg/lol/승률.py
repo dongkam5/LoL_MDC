@@ -1,8 +1,8 @@
-import matchId
-import encryptId
+from . import matchId
+from . import encryptId
 import requests
 
-def WinorLose(DEVELOPMENTAPIKEY,summonerName):
+def getOdds(DEVELOPMENTAPIKEY,summonerName):
     encryptedId, encryptedPuuId = encryptId.encrypt(DEVELOPMENTAPIKEY,summonerName)
     gameId = matchId.getMatchId(DEVELOPMENTAPIKEY,summonerName)
     headers = {
@@ -29,6 +29,5 @@ def WinorLose(DEVELOPMENTAPIKEY,summonerName):
             if(participantId > 5):
                 win+=1
     return win*100/all
-DEVELOPMENTAPIKEY = "RGAPI-eaeea29e-839e-49b7-8c50-b2e1357bf971"
+DEVELOPMENTAPIKEY = "RGAPI-6fe38e26-cb38-49c6-a0d6-29162b47d388"
 summonerName = "동 캄"
-print(WinorLose(DEVELOPMENTAPIKEY,summonerName))

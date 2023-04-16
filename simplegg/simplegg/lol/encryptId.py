@@ -1,8 +1,9 @@
-import encryptId
 import requests
+from urllib import parse
 
-def getIngame(DEVELOPMENTAPIKEY,summonerName):
-    encryptedId, encryptedPuuId = encryptId.encrypt(DEVELOPMENTAPIKEY,summonerName)
+def encrypt(DEVELOPMENTAPIKEY,summonerName):
+    encodingSummonerName = parse.quote(summonerName)
+    APIURL = "https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + encodingSummonerName
     headers = {
         "Origin": "https://developer.riotgames.com",
         "Accept-Charset": "application/x-www-form-urlencoded; charset=UTF-8",
@@ -10,17 +11,7 @@ def getIngame(DEVELOPMENTAPIKEY,summonerName):
         "Accept-Language": "ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7",
         "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.117 Safari/537.36"
         }
-    APIURL = "https://kr.api.riotgames.com/lol/spectator/v4/active-games/by-summoner/" + encryptedId
     res = requests.get(APIURL, headers=headers)
     data = res.json()
-    try:
-        gameid = data["gameId"]
-        return True
-    except:
-        return False
-
-
-DEVELOPMENTAPIKEY = "RGAPI-eaeea29e-839e-49b7-8c50-b2e1357bf971"
-summonerName = "동 캄"
-
-print(getIngame(DEVELOPMENTAPIKEY,summonerName))
+    return data["id"], data['puuid']
+print(encrypt("RGAPI-6fe38e26-cb38-49c6-a0d6-29162b47d388","동 캄"))

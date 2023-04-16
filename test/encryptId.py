@@ -14,4 +14,4 @@ def encrypt(DEVELOPMENTAPIKEY,summonerName):
     res = requests.get(APIURL, headers=headers)
     data = res.json()
     return data["id"], data['puuid']
-print(encrypt("RGAPI-41a0cbed-7981-437d-b919-91965410d595","동 캄"))
+print(encrypt("RGAPI-eaeea29e-839e-49b7-8c50-b2e1357bf971","동 캄"))

@@ -1,4 +1,4 @@
-import encryptId
+from . import encryptId
 import requests
 
 def getIngame(DEVELOPMENTAPIKEY,summonerName):
@@ -20,7 +20,7 @@ def getIngame(DEVELOPMENTAPIKEY,summonerName):
         return False
 
 
-DEVELOPMENTAPIKEY = "RGAPI-eaeea29e-839e-49b7-8c50-b2e1357bf971"
+DEVELOPMENTAPIKEY = "RGAPI-6fe38e26-cb38-49c6-a0d6-29162b47d388"
 summonerName = "동 캄"
 
 print(getIngame(DEVELOPMENTAPIKEY,summonerName))
